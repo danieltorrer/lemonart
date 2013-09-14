@@ -396,7 +396,7 @@ class Back extends CI_Controller {
 			$crud->set_table('slide');
 			$crud->set_field_upload('imagen', 'images/slide');
 
-			//$crud->callback_after_upload(array($this, 'slide_callback'));
+			$crud->callback_after_upload(array($this, 'slide_callback'));
 			$output = $crud->render();
 
 			$this->load->view("grid_view", $output);
@@ -410,7 +410,8 @@ class Back extends CI_Controller {
 		$this->load->library('image_moo');
 
 		$file_uploaded = $field_info->upload_path . '/' . $uploader_response[0]->name;
-		$this->image_moo->load($file_uploaded)->resize_crop(940, 360)->save($file_uploaded, true);
+		//$this->image_moo->load($file_uploaded)->set_background_colour("#000")->resize(940,403, TRUE)->save($file_uploaded, true);
+		$this->image_moo->load($file_uploaded)->resize_crop(940, 456)->save($file_uploaded, true);
 
 		return true;
 	}

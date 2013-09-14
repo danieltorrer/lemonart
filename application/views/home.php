@@ -31,46 +31,47 @@
         <section>
             <div class="row">
                 <div class="twelve columns">
-                    <h5><?= $lemonprincipal[0]["texto"] ?></h5>
-                    <hr/>
+                    <h5 id="descripcion-lemon"><?= $lemonprincipal[0]["texto"] ?></h5>
+                    <hr>
                 </div>
             </div>
             
             <div class="row slider">
                 <div class="twelve columns">
                     <!--<h3>Novedades</h3>-->
-                    <div id="featured">
-                        <?php
-                        $cont = 1;
-                        foreach ($slides as $slide) {
-                            ?>
-                            <div data-caption="#caption<?= $cont ?>">
-                                <a href="<?= $slide["enlace"] ?>" target="_blank">
-                                    <img src="<?= base_url() ?>images/slide/<?= $slide["imagen"] ?>" alt="slide image">
-                                </a>
-                            </div>
 
-                            <?php
-                            $cont++;
-                        }
-                        ?>
-                    </div>
+                    <div id="featured">
+                     <?php
+                     $cont = 1;
+                     foreach ($slides as $slide) {
+                         ?>
+                         <div data-caption="#caption<?= $cont ?>">
+                             <a href="<?= $slide["enlace"] ?>" target="_blank">
+                                 <img src="<?= base_url() ?>images/slide/<?= $slide["imagen"] ?>" alt="slide image">
+                             </a>
+                         </div>
+
+                         <?php
+                         $cont++;
+                     }
+                     ?>
+                 </div>
+
+                 <?php
+                 $cont = 1;
+                 foreach ($slides as $slide) {
+                    ?>
+                    <div class="orbit-caption" id="caption<?= $cont ?>"><?= $slide["titulo"] ?></div>
 
                     <?php
-                    $cont = 1;
-                    foreach ($slides as $slide) {
-                        ?>
-                        <div class="orbit-caption" id="caption<?= $cont ?>"><?= $slide["titulo"] ?></div>
-
-                        <?php
-                        $cont++;
-                    }
-                    ?>	
-                </div>
-
+                    $cont++;
+                }
+                ?>	
             </div>
 
-        </section>
+        </div>
+
+    </section>
 
         <!--<section class="destacados">
             <div class="row destacado">
@@ -205,7 +206,9 @@
 
     <script>
     $(window).load(function(){
-        $("#featured").orbit();
+        $("#featured").orbit({
+            fluid: '30x14'
+        });
     });
     </script> 
 
