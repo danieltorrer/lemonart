@@ -104,6 +104,11 @@ iframe{
     padding-top: 10px;
 }
 
+.orbit div.orbit-slide {
+    text-align: center;
+    background: black;
+}
+
 .imgcont{
     text-align: center;
 }

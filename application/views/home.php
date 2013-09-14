@@ -45,7 +45,7 @@
                         foreach ($slides as $slide) {
                             ?>
                             <div data-caption="#caption<?= $cont ?>">
-                                <a href="<?= $slide["enlace"] ?>">
+                                <a href="<?= $slide["enlace"] ?>" target="_blank">
                                     <img src="<?= base_url() ?>images/slide/<?= $slide["imagen"] ?>" alt="slide image">
                                 </a>
                             </div>

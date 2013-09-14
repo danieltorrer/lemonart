@@ -9,7 +9,7 @@
                 </li>
                 <li>
                     <a href="https://twitter.com/lemon_art" target="_blank">
-                        <img class="icono" src="<?=base_url()?>images/twitter.png">
+                        <img class="icono" src="<?=base_url()?>images/some.png">
                     </a>
                 </li>
                 <li>
@@ -23,7 +23,7 @@
 
     <div class="row">
         <div class="twelve columns">
-            <h6>Lemon Art Copyright 2013 &copy;</h6>
+            <h6>Lemon Art Copyright <?php echo date("Y");?> &copy;</h6>
         </div>
     </div>
 </footer>

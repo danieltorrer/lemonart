@@ -396,7 +396,7 @@ class Back extends CI_Controller {
 			$crud->set_table('slide');
 			$crud->set_field_upload('imagen', 'images/slide');
 
-			$crud->callback_after_upload(array($this, 'slide_callback'));
+			//$crud->callback_after_upload(array($this, 'slide_callback'));
 			$output = $crud->render();
 
 			$this->load->view("grid_view", $output);
@@ -649,12 +649,12 @@ class Back extends CI_Controller {
 				&& ($_FILES["file"]["size"] < 2000000)
 				&& in_array($extension, $allowedExts)) {
 				if ($_FILES["file"]["error"] > 0) {
-				//echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
-					return false;
+					echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+					//return false;
 				} else {
 					$nombrea = md5(time());
 					move_uploaded_file($_FILES["file"]["tmp_name"], "images/" . $nombrea . "." . $extension);
-					echo "Stored in: " . base_url() . "images/" . $nombrea . "." . $extension;
+					//echo "Stored in: " . base_url() . "images/" . $nombrea . "." . $extension;
 
 					$data = array(
 						'imagen' => $nombrea . "." . $extension
@@ -729,5 +729,4 @@ class Back extends CI_Controller {
 	}
 
 }
-
 ?>
