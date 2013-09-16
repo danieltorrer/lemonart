@@ -411,7 +411,7 @@ class Back extends CI_Controller {
 
 		$file_uploaded = $field_info->upload_path . '/' . $uploader_response[0]->name;
 		//$this->image_moo->load($file_uploaded)->set_background_colour("#000")->resize(940,403, TRUE)->save($file_uploaded, true);
-		$this->image_moo->load($file_uploaded)->resize_crop(940, 456)->save($file_uploaded, true);
+		$this->image_moo->load($file_uploaded)->resize_crop(940, 439)->save($file_uploaded, true);
 
 		return true;
 	}
