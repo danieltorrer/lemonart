@@ -14,8 +14,8 @@
 | path to your installation.
 |
 */
-$config['base_url']	= 'http://localhost/lemonart/';
-//$config["base_url"] = "http://lemonart-tj.com/";
+//$config['base_url']	= 'http://localhost/lemonart/';
+$config["base_url"] = "http://lemonart.org/";
 
 /*
 |--------------------------------------------------------------------------

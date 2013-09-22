@@ -1,7 +1,8 @@
 <IfModule mod_rewrite.c>
 
 RewriteEngine On
-RewriteBase /lemonart/
+#RewriteBase /lemonart/
+RewriteBase /
 RewriteCond %{REQUEST_URI} ^system.*
 RewriteRule ^(.*)$ /index.php/$1 [L]
 RewriteCond %{REQUEST_FILENAME} !-f

@@ -55,7 +55,7 @@ header .menu-links li a:hover{
 footer{
 	background: #fff;
 	color: white;
-	padding-top: 20px;
+	padding-top: 18px;
 }
 
 footer .iconos{
@@ -72,8 +72,13 @@ footer a i.icono{
 	text-shadow: 1px 1px 1px #000;
 }
 
-footer>div:first-child{
+/*footer>div:first-child{
 	border-bottom: 5px solid #ed008c;
+}*/
+
+.linea-footer{
+  height: 5px;
+  border-top: 5px solid #ed008c;
 }
 
 footer div h6{
@@ -95,6 +100,12 @@ footer div h6{
 
 .icono{
 	font-size: 2em;
+}
+
+div.home-container{
+  max-height: 570px !important;
+
+  padding-top: 40px;
 }
 
 iframe{
@@ -185,9 +196,11 @@ h5#descripcion-lemon{
 		position: relative;
 	}
 
-	.contenedor{
+	.contenedor,body div.home-container{
 		padding-top: 30px;
 	}
+
+
 
 	header nav ul.menu-links{
 		text-align: center;
@@ -291,9 +304,9 @@ h5#descripcion-lemon{
 	margin-bottom: 40px;
 }
 
-.slider .columns{
+/*.slider .columns{
 	padding: 0;
-}
+}*/
 
 /* -----------------------------------------
   Eventos

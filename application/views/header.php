@@ -13,7 +13,6 @@
                     <li><a href="<?= base_url() ?>blog">Blog</a></li>
                     <!--<li><a href="<?= base_url() ?>tienda">Tienda</a></li>-->
                     <li><a href="<?= base_url() ?>contacto">Contacto</a></li>
-                    <li><a href="<?= base_url() ?>convocatoria">Convocatoria</a></li>
                 </ul>
             </nav>
 
