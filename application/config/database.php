@@ -49,12 +49,14 @@ $active_group = 'default';
 $active_record = TRUE;
 
 $db['default']['hostname'] = 'localhost';
-//$db['default']['username'] = 'root';
-$db['default']['username'] = 'lemonartdb';
-//$db['default']['password'] = '';
-$db['default']['password'] = 'Tijuana500!';
-//$db['default']['database'] = 'lemonart';
-$db['default']['database'] = 'lemonartdb';
+//$db['default']['hostname'] = 'lemonartdb.db.11819015.hostedresource.com';
+
+$db['default']['username'] = 'root';
+//$db['default']['username'] = 'lemonartdb';
+$db['default']['password'] = '';
+//$db['default']['password'] = 'Tijuana500!';
+$db['default']['database'] = 'lemonart';
+//$db['default']['database'] = 'lemonartdb';
 
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';

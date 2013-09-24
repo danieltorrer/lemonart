@@ -107,6 +107,7 @@
 	<script src="<?= base_url() ?>javascripts/jquery.js"></script>
 	<script src="<?= base_url() ?>javascripts/foundation.min.js"></script>
 	<script src="<?=base_url()?>source/jquery.fancybox.pack.js"></script>
+	<?php include_once("analyticstracking.php") ?>
 	<!-- Initialize JS Plugins -->
 	<script src="<?= base_url() ?>javascripts/app.js"></script>
 	<script src="<?= base_url() ?>javascripts/main.js"></script>

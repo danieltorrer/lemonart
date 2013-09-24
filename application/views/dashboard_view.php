@@ -20,6 +20,7 @@
 	<link rel="stylesheet" href="<?= base_url() ?>stylesheets/social_foundicons_ie7.css">
 	<link rel="stylesheet" href="<?= base_url() ?>stylesheets/foundation.css">
 	<link rel="stylesheet" href="<?= base_url() ?>stylesheets/app.css">
+	<link rel="stylesheet" href="<?=base_url()?>source/jquery.fancybox.css">
 	<style type="text/css">
 	#cke_62{
 		display: none;
@@ -119,7 +120,7 @@
 						<br>
 						<form action="<?= base_url() ?>back/subirimagen" class="form-horizontal" method="post" name="imagenform" id="imagenform" enctype="multipart/form-data"> 
 							<div class="row">
-								<input type="file" name="file" id="file"/>
+								<input type="file" name="files[]" id="file" multiple="multiple"/>
 							</div>
 							<br>
 							<div class="row">
@@ -135,6 +136,7 @@
 						<ul>	
 							
 							<?php
+							$cont = 1;
 							foreach ($panel["imagenes"] as $imagen) {
 								?>
 								<li>
@@ -144,7 +146,10 @@
 										</div>
 										<div class="three columns">
 											
-											<img src="<?php echo base_url() . "images/" . $imagen['imagen'] ?>" width="70">
+											<a class="fancybox" rel="fancybox-button" href="<?php echo base_url() . "images/" . $imagen['imagen'] ?>">
+												<img src="<?php echo base_url() . "images/" . $imagen['thumb'] ?>" width="70">
+											</a>
+											<a><?php echo $cont; ?></a>
 											<img class="erasepic" src="<?php echo base_url() . 'images/remove2.png' ?>" data-img="<?php echo $imagen['imagen'] ?>">
 											
 										</div>
@@ -152,6 +157,7 @@
 								</li>
 								<hr>
 								<?php
+								$cont++;
 							}
 							?>
 							<?php echo form_open('back/borrarimg', array('id' => 'myform')); ?>
@@ -176,6 +182,7 @@
 		<!-- Included JS Files (Compressed) -->
 		<script src="<?= base_url() ?>javascripts/jquery.js"></script>
 		<script src="<?= base_url() ?>javascripts/foundation.min.js"></script>
+		<script src="<?=base_url()?>source/jquery.fancybox.pack.js"></script>
 		<!-- Initialize JS Plugins -->
 		<script src="<?= base_url() ?>javascripts/app.js"></script>
 		<script src="<?= base_url() ?>javascripts/main.js"></script>
@@ -191,6 +198,11 @@
 				$("#nombre").val ( $(this).attr("data-img") )
 				$("#myform").submit()
 			})
+
+			$(".fancybox").fancybox({
+				openEffect  : 'elastic',
+				closeEffect : 'easeOutBack'
+			});
 
 
 		})

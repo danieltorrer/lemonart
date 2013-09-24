@@ -146,6 +146,7 @@ class Back extends CI_Controller {
 	}
 
 	public function obras_panel() {
+
 		if ($this->isValidated()) {
 
 			$data = $this->descripciones();
@@ -336,6 +337,7 @@ class Back extends CI_Controller {
 	}
 
 	public function eventosdestacados() {
+		
 		if ($this->isValidated()) {
 
 			$crud = new grocery_CRUD();
@@ -347,31 +349,33 @@ class Back extends CI_Controller {
 
 			$crud->set_relation("id_evento", "evento", "nombre");
 			$crud->required_fields('id_evento');
-			/* $crud->unset_add();
-			  $crud->unset_delete();
-			 */
-			  $output = $crud->render();
+			/* 
+			$crud->unset_add();
+			$crud->unset_delete();
+			*/
+			$output = $crud->render();
 
 			//$this->_example_output($output);
 
-			  $this->load->view("grid_view", $output);
-			}
-			else
-				redirect("back/index");
+			$this->load->view("grid_view", $output);
 		}
 
-		public function colaboradoresdestacados() {
-			if ($this->isValidated()) {
+		else
+			redirect("back/index");
+	}
 
-				$crud = new grocery_CRUD();
+	public function colaboradoresdestacados() {
+		if ($this->isValidated()) {
 
-				$crud->set_table('colaboradoresdestacados')
-				->set_subject('Colaboradores destacados')
-				->columns('id_colaborador')
-				->display_as('id_colaborador', 'Nombre colaborador');
+			$crud = new grocery_CRUD();
 
-				$crud->set_relation("id_colaborador", "colaborador", "nombre");
-				$crud->required_fields('id_colaborador');
+			$crud->set_table('colaboradoresdestacados')
+			->set_subject('Colaboradores destacados')
+			->columns('id_colaborador')
+			->display_as('id_colaborador', 'Nombre colaborador');
+
+			$crud->set_relation("id_colaborador", "colaborador", "nombre");
+			$crud->required_fields('id_colaborador');
 			/* $crud->unset_add();
 			$crud->unset_delete(); */
 
@@ -637,41 +641,122 @@ class Back extends CI_Controller {
 			redirect("back/index");
 	}
 
-	public function subirimagen() {
+	/*public function subirimagen() {
+
 		if ($this->isValidated()) {
 			$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG", "JPEG", "GIF", "PNG");
-			$extension = end(explode(".", $_FILES["file"]["name"]));
 
-			if ((($_FILES["file"]["type"] == "image/gif")
-				|| ($_FILES["file"]["type"] == "image/jpg")
-				|| ($_FILES["file"]["type"] == "image/jpeg")
-				|| ($_FILES["file"]["type"] == "image/png")
-				|| ($_FILES["file"]["type"] == "image/pjpeg"))
-				&& ($_FILES["file"]["size"] < 2000000)
-				&& in_array($extension, $allowedExts)) {
-				if ($_FILES["file"]["error"] > 0) {
-					echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
+			foreach ( $_FILES['file']['tmp_name'] as $key => $val ) {
+
+				$extension = end(explode(".", $_FILES['file']['name'][$key] ) );
+				
+				if ((($_FILES["file"]["type"] == "image/gif")
+					|| ($_FILES["file"]["type"][$key] == "image/jpg")
+					|| ($_FILES["file"]["type"][$key] == "image/jpeg")
+					|| ($_FILES["file"]["type"][$key] == "image/png")
+					|| ($_FILES["file"]["type"][$key] == "image/pjpeg"))
+					&& ($_FILES["file"]["size"][$key] < 2000000)
+					&& in_array($extension, $allowedExts)) {
+					
+					if ($_FILES["file"]["error"] > 0) {
+						echo "Return Code: " . $_FILES["file"]["error"] . "<br />";
 					//return false;
-				} else {
-					$nombrea = md5(time());
-					move_uploaded_file($_FILES["file"]["tmp_name"], "images/" . $nombrea . "." . $extension);
+					}
+					else {
+						$nombrea = md5(time());
+						move_uploaded_file($_FILES["file"]["tmp_name"][$key], "images/" . $nombrea . "." . $extension);
 					//echo "Stored in: " . base_url() . "images/" . $nombrea . "." . $extension;
 
-					$data = array(
-						'imagen' => $nombrea . "." . $extension
-						);
-					$this->load->model("inicio_model");
-					$this->inicio_model->insertar_imagen($data);
+						$data = array(
+							'imagen' => $nombrea . "." . $extension
+							);
+						$this->load->model("inicio_model");
+						$this->inicio_model->insertar_imagen($data);
+						redirect("back/imagenes_panel");
+					}
+
+				}
+
+				else {
+					$data['error'] = "Archivo Inválido";
 					redirect("back/imagenes_panel");
 				}
-			} else {
-				$data['error'] = "Archivo Inválido";
-				redirect("back/imagenes_panel");
+
 			}
 
 		}
+
 		else
 			redirect("back/index");
+		}*/
+
+		function subirimagen(){
+
+			if ($this->isValidated()) {
+				
+				if(isset($_FILES['files'])){
+					$allowedExts = array("jpg", "jpeg", "gif", "png", "JPG", "JPEG", "GIF", "PNG");
+					$errors= array();
+					foreach($_FILES['files']['tmp_name'] as $key => $tmp_name ){
+						
+						$extension = end(explode(".", $_FILES['files']['name'][$key] ) );
+
+						if ((($_FILES["files"]["type"] == "image/gif")
+							|| ($_FILES["files"]["type"][$key] == "image/jpg")
+							|| ($_FILES["files"]["type"][$key] == "image/jpeg")
+							|| ($_FILES["files"]["type"][$key] == "image/png")
+							|| ($_FILES["files"]["type"][$key] == "image/pjpeg"))
+							&& ($_FILES["files"]["size"][$key] < 20000000)
+							&& in_array($extension, $allowedExts)) {
+
+								$file_name = $_FILES['files']['name'][$key];
+								$file_size = $_FILES['files']['size'][$key];
+								$file_tmp  = $_FILES['files']['tmp_name'][$key];
+								$file_type = $_FILES['files']['type'][$key];
+
+								$extension = end(explode(".", $file_name ));
+								
+
+								if($file_size > 20097152){
+									$errors[]='File size must be less than 2 MB';
+								}
+
+								if(empty($errors)==true){
+									$name = "";
+									
+									$name = md5(time() + $file_name + rand());
+
+									$data = array(
+										'imagen' => $name . "." . $extension,
+										"thumb" => $name . "_small." . $extension
+									);
+
+									$this->load->model("inicio_model");
+
+									$this->inicio_model->insertar_imagen($data);
+									$this->load->library('image_moo');
+
+									move_uploaded_file($file_tmp, "images/" . $name . "." . $extension);
+
+									$this->image_moo->load("images/" . $name . "." . $extension)->resize(150,150,TRUE)->save_pa($prepend="", $append="_small", $overwrite=FALSE);
+									
+									//redirect("back/imagenes_panel");
+								}
+						}
+
+						else{
+							redirect("back");
+						}
+					}
+
+					if(empty($error)){
+						redirect("back/imagenes_panel");
+					}
+				}
+			}
+
+			else
+				redirect("back/index");
 	}
 
 	function borrarimg(){

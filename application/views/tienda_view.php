@@ -127,6 +127,8 @@
         <!-- Included JS Files (Compressed) -->
         <script src="javascripts/jquery.js"></script>
         <script src="javascripts/foundation.min.js"></script>
+
+        <?php include_once("analyticstracking.php") ?>
         <!-- Initialize JS Plugins -->
         <script src="javascripts/app.js"></script>
         <script src="javascripts/main.js"></script>
